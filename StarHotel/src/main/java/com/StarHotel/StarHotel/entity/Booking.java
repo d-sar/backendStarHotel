@@ -27,9 +27,11 @@ public class Booking {
     private int numOfChildren;
     private int totalNumberOfGuests;
     private String bookingConfirmationCode ;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private  User user;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
