@@ -31,4 +31,28 @@ public class Room {
                 ", roomDescription='" + roomDescription + '\'' +
                 '}';
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public void setRoomPrice(BigDecimal roomPrice) {
+        this.roomPrice = roomPrice;
+    }
+
+    public void setRoomPhotoUrl(String roomPhotoUrl) {
+        this.roomPhotoUrl = roomPhotoUrl;
+    }
+
+    public void setRoomDescription(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }
