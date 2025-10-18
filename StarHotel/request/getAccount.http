@@ -1,0 +1,12 @@
+### GET request to example server
+POST http://localhost:8085/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "laila@example.com",
+  "password": "laila"
+}
+
+
+###
