@@ -7,7 +7,7 @@ content-type: application/json
   "name": "laila",
   "phoneNumber": "0612345678",
   "password": "laila",
-  "role": "USER"
+  "role": "ADMIN"
 }
 
 

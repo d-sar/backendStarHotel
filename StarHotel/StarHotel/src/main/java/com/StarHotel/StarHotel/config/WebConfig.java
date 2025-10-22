@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Ici, "file:uploads/rooms/" correspond au dossier physique où tu stockes les images
-        registry.addResourceHandler("/rooms/**")
-                .addResourceLocations("file:uploads/rooms/");
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:uploads/");
     }
 }
