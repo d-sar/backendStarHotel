@@ -1,7 +1,0 @@
-### GET request to example server
-GET http://localhost:8085/users/get-logged-in-profile-info
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhQGV4YW1wbGUuY29tIiwiaWF0IjoxNzYwNzE0NjQyLCJleHAiOjE3NjA3MjQ3MjJ9.djZjssIDEqTNyYgSMR7KXdy22m6HcDRMLyDuFtyEiFw
-Accept: application/json
-
-
-###
