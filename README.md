@@ -91,7 +91,7 @@ Ce projet est une application web complète pour la gestion et la réservation d
 
 ## Capture d’écran
 
-> À compléter avec une capture d’écran de l’application une fois en service.
+![alt text](<Capture d'écran 2025-11-27 220242.png>)
 
 ## Crédits
 
