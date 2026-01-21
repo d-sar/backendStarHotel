@@ -1,101 +1,223 @@
 # Itran Hotel
 
-Ce projet est une application web complète pour la gestion et la réservation d'un hôtel nommée **Itran Hotel**. Elle inclut deux parties principales :
-- **Backend** : développé en **Spring Boot** (Java)
-- **Frontend** : développé en **React.js**
+A comprehensive web application for hotel management and booking system named **Itran Hotel**. It includes two main components:
+- **Backend**: Built with **Spring Boot** (Java)
+- **Frontend**: Built with **React.js**
 
-## Table des matières
-- [Fonctionnalités](#fonctionnalités)
-- [Architecture de projet ](#Architecture-de-projet)
-- [Installation et démarrage](#installation-et-démarrage)
+## Table of Contents
+- [Features](#features)
+- [Project Architecture](#project-architecture)
+- [Installation and Setup](#installation-and-setup)
     - [Backend Spring Boot](#backend-spring-boot)
     - [Frontend React.js](#frontend-reactjs)
-- [Aperçu des modules](#aperçu-des-modules)
-- [Dépendances principales](#dépendances-principales)
-- [Capture d'écran](#capture-décran)
-- [Crédits](#crédits)
+- [Module Overview](#module-overview)
+- [Main Dependencies](#main-dependencies)
+- [Screenshots](#screenshots)
+- [Credits](#credits)
 
 ---
 
-## Fonctionnalités
+## Features
 
-- Authentification/inscription utilisateur/admin
-- Recherche de chambres disponibles avec filtres par type, date, etc.
-- Réservation de chambres
-- Gestion des réservations (création, édition, annulation)
-- Tableau de bord administrateur :
-  - Gestion/création/édition/suppression de chambres
-  - Gestion des réservations clients
-- Gestion de profil utilisateur
+### User Authentication & Authorization
+- User registration and login
+- Admin and user role management
+- Secure authentication with Spring Security and JWT tokens
+- Profile management for users
+
+### Room Management
+- Browse all available rooms with detailed information
+- Filter rooms by type (Suite Premium, Standard, etc.)
+- Search rooms by check-in and check-out dates
+- View room details including price, description, and amenities
+- Real-time room availability checking
+
+### Booking System
+- Book rooms with date selection
+- Find existing bookings using confirmation codes
+- View booking history and details
+- Modify or cancel reservations
+- Booking confirmation and management
+
+### Admin Dashboard
+- Add new rooms with images and details
+- Edit and update existing room information
+- Delete rooms from the system
+- Manage all customer bookings
+- View and edit booking details
+- Monitor hotel occupancy and reservations
+
+### AI-Powered Hotel Assistant (Chatbot)
+- Intelligent chatbot for customer support
+- Multilingual support (French, English, etc.)
+- Helps users with:
+  - Room availability inquiries
+  - Booking assistance
+  - Hotel information
+  - Price comparisons
+  - Reservation recommendations
+- Real-time conversation interface
+- Context-aware responses
+
+### User Interface
+- Responsive design for all devices
+- Intuitive navigation menu
+- Modern and clean interface
+- Date picker for booking dates
+- Room type filtering
+- Image galleries for rooms
+- Professional footer with copyright information
 
 ## Architecture de projet 
 
 ![alt text](architectureBack.png)
 
 
-## Installation et démarrage
+## Installation and Setup
 
 ### Backend Spring Boot
 
-1. Rendez-vous dans le dossier backend :
+1. Navigate to the backend directory:
    ```bash
-   cd backend
+   cd StarHotel/StarHotel
    ```
-2. Configurez la base de données dans `application.properties` (variables de connexion, etc.).
-3. Compilez et démarrez l'API :
+2. Configure the database in `application.properties` (connection variables, etc.).
+3. Build and start the API:
    ```bash
    ./mvnw spring-boot:run
    ```
-   Le backend tournera en général sur `http://localhost:8085` (ou le port configuré).
+   The backend will typically run on `http://localhost:8085` (or the configured port).
 
 ### Frontend React.js
 
-1. Rendez-vous dans le dossier frontend :
+1. Navigate to the frontend directory:
    ```bash
    cd frontend
    ```
-2. Installez les dépendances npm :
+2. Install npm dependencies:
    ```bash
    npm install
    ```
-3. Lancez le serveur de développement :
+3. Start the development server:
    ```bash
    npm start
    ```
-   Le front sera accessible par défaut sur `http://localhost:3000`
+   The frontend will be accessible by default at `http://localhost:3000`
 
-## Aperçu des modules
+## Module Overview
 
-- **Accueil et présentation de l'hôtel** (`HomePage.jsx`)
-- **Recherche et résultats de chambres** (`RoomSearch.jsx`, `RoomResult.jsx`)
-- **Réservation d'une chambre** (`RoomDetailsPage.jsx`)
-- **Trouver une réservation (pour utilisateur)** (`FindBookingPage.jsx`)
-- **Gestion Admin** :
-    - Ajout d'une chambre (`AddRoomPage.jsx`)
-    - Modification/Suppression de chambres
-    - Gestion des réservations (`ManageBookingsPage.jsx`)
-- **Gestion du profil utilisateur** (`ProfilePage.jsx`, `EditProfilePage.jsx`)
-- **Navigation et mise en page** (`Navbar.jsx`, `Footer.jsx`)
+### Frontend Components
 
-## Dépendances principales
+#### Home & Presentation
+- **HomePage.jsx** - Landing page with hero image and welcome message
+- **style.css** - Custom styling for home page
 
-- **Frontend** :
-    - React
-    - react-router-dom
-    - react-datepicker
-    - axios (via `ApiService.js`)
-- **Backend** :
-    - Spring Boot, Spring Security, JPA, Hibernate, Spring validation, lombok, 
-    - Base de données (MySQL, H2 à configurer)
-    - JWT pour l’authentification (à confirmer dans le backend) Spring security
+#### Room Browsing & Booking
+- **AllRoomsPage.jsx** - Display all available rooms with filters
+- **RoomSearch.jsx** - Search component with date pickers and filters
+- **RoomResult.jsx** - Room listing results display
+- **RoomDetailsPage.jsx** - Detailed room information and booking
+- **FindBookingPage.jsx** - Search for existing bookings
+- **BookingResult.jsx** - Booking confirmation and details
 
-## Capture d’écran
+#### User Authentication
+- **LoginPage.jsx** - User login interface
+- **RegisterPage.jsx** - New user registration
 
+#### Admin Management
+- **AdminPage.jsx** - Admin dashboard
+- **AddRoomPage.jsx** - Add new rooms to the system
+- **EditRoomPage.jsx** - Edit existing room details
+- **ManageRoomPage.jsx** - Room management interface
+- **ManageBookingsPage.jsx** - View and manage all bookings
+- **EditBookingPage.jsx** - Modify booking details
+
+#### User Profile
+- **ProfilePage.jsx** - User profile information
+- **EditProfilePage.jsx** - Update user profile
+
+#### Common Components
+- **Navbar.jsx** - Navigation bar with menu items
+- **Footer.jsx** - Footer with copyright information
+- **ChatBot.jsx** - AI-powered hotel assistant
+- **ChatBot.css** - Chatbot styling
+- **Pagination.jsx** - Pagination for room listings
+
+#### Services
+- **ApiService.js** - API calls and backend integration
+- **guard.js** - Route protection and authorization
+
+### Backend Structure
+
+#### Controllers
+- REST API endpoints for rooms, bookings, users, and authentication
+
+#### Services
+- Business logic implementation
+- Room management service
+- Booking service
+- User service
+- Authentication service
+
+#### Entities
+- Room entity
+- Booking entity
+- User entity
+- Role entity
+
+#### Repositories
+- JPA repositories for database operations
+
+#### Security
+- JWT token generation and validation
+- Spring Security configuration
+- User authentication and authorization
+
+#### ChatBot
+- AI-powered chatbot service
+- Natural language processing
+- Context management
+
+## Main Dependencies
+
+### Frontend
+- **React** - UI library
+- **react-router-dom** - Routing and navigation
+- **react-datepicker** - Date selection for bookings
+- **axios** - HTTP client (via `ApiService.js`)
+- CSS modules for styling
+
+### Backend
+- **Spring Boot** - Application framework
+- **Spring Security** - Authentication and authorization
+- **Spring Data JPA** - Database access
+- **Hibernate** - ORM framework
+- **Spring Validation** - Input validation
+- **Lombok** - Boilerplate code reduction
+- **JWT** - Token-based authentication
+- **MySQL/H2** - Database (configurable)
+- AI/NLP libraries for chatbot functionality
+
+## Screenshots
+
+### Homepage
+![Itran Hotel Homepage](screenshot-homepage.png)
+*Welcome page with hero image and navigation menu*
+
+### Rooms Page with AI Assistant
+![All Rooms Page with Chatbot](screenshot-rooms-chatbot.png)
+*Browse rooms with intelligent chatbot assistance for booking inquiries*
+
+### Architecture Diagram
 ![alt text](<Capture d'écran 2025-11-27 220242.png>)
 
-## Crédits
+## Credits
 
-- Projet développé par [d-sar](https://github.com/d-sar)
-- Toute contribution ou suggestion d'amélioration est la bienvenue !
+- Project developed by [d-sar](https://github.com/d-sar)
+- All contributions and improvement suggestions are welcome!
+
+---
+
+© 2026 Itran Hotel | All Rights Reserved
 
 

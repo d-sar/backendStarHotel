@@ -36,20 +36,26 @@ public class JWTAuthFilter extends OncePerRequestFilter {
            return;
         }
         jwtToken = authHeader.substring(7);
-        userEmail = jwtUtils.extractUsername(jwtToken);
+        
+        try {
+            userEmail = jwtUtils.extractUsername(jwtToken);
 
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
-            if(jwtUtils.validateToken(jwtToken, userDetails)) {
-                SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                securityContext.setAuthentication(token);
-                SecurityContextHolder.setContext(securityContext);
+            if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
+                if(jwtUtils.validateToken(jwtToken, userDetails)) {
+                    SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+                    UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    securityContext.setAuthentication(token);
+                    SecurityContextHolder.setContext(securityContext);
 
+                }
             }
-
+        } catch (Exception e) {
+            // Token is invalid or expired - continue without authentication
+            // The user will be treated as unauthenticated
         }
+        
         filterChain.doFilter(request, response);
     }
 }

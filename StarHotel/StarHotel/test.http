@@ -1,0 +1,202 @@
+### Variables
+@baseUrl = http://localhost:8085
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc2ODMyMDI5NCwiZXhwIjoxNzY4MzMwMzc0fQ.6F7vqYkj4aThgfXlW5BFSQpK5HmWHJV5XqxTH3-VpKM",
+
+@adminToken = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBzdGFyaG90ZWwuY29tIiwiaWF0IjoxNzY4ODM1NjU0LCJleHAiOjE3Njg4NDU3MzR9.qLqd0ipZY93lTdnwFlZX-ZuBuAtI2GWLEUiDwbpBBQ4
+
+###############################################
+### AUTH CONTROLLER
+###############################################
+
+### 1. Register a new user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "+1234567890",
+  "password": "password123",
+  "role": "USER"
+}
+
+### 2. Register an admin user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin User",
+  "email": "admin@starhotel.com",
+  "phoneNumber": "+9876543210",
+  "password": "admin123",
+  "role": "ADMIN"
+}
+
+### 3. Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+
+### 4. Login as Admin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@starhotel.com",
+  "password": "admin123"
+}
+
+###############################################
+### ROOM CONTROLLER
+###############################################
+
+### 5. Get all rooms
+GET {{baseUrl}}/rooms/all
+
+### 6. Get room types
+GET {{baseUrl}}/rooms/types
+
+### 7. Get room by ID
+GET {{baseUrl}}/rooms/room-by-id/1
+
+### 8. Get all available rooms
+GET {{baseUrl}}/rooms/all-available-rooms
+
+### 9. Get available rooms by date and type
+GET {{baseUrl}}/rooms/available-rooms-by-date-and-type?checkInDate=2026-02-01&checkOutDate=2026-02-05&roomType=DELUXE
+
+### 10. Add new room (ADMIN only - with form data)
+POST {{baseUrl}}/rooms/add
+Authorization: Bearer {{adminToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="roomType"
+
+DELUXE
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="roomPrice"
+
+199.99
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="roomDescription"
+
+Luxurious room with ocean view
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="photo"; filename="room.jpg"
+Content-Type: image/jpeg
+
+< src/main/resources/imag/ch2.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 11. Update room (ADMIN only)
+PUT {{baseUrl}}/rooms/update/1
+Authorization: Bearer {{adminToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="roomType"
+
+SUITE
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="roomPrice"
+
+299.99
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="roomDescription"
+
+Premium suite with balcony
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 12. Delete room (ADMIN only)
+DELETE {{baseUrl}}/rooms/delete/1
+Authorization: Bearer {{adminToken}}
+
+###############################################
+### BOOKING CONTROLLER
+###############################################
+
+### 13. Book a room (USER or ADMIN)
+POST {{baseUrl}}/bookings/book-room/1/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "checkInDate": "2026-03-15",
+  "checkOutDate": "2026-03-20",
+  "numOfAdults": 2,
+  "numOfChildren": 1
+}
+
+### 14. Get all bookings (ADMIN only)
+GET {{baseUrl}}/bookings/all
+Authorization: Bearer {{adminToken}}
+
+### 15. Get booking by confirmation code
+GET {{baseUrl}}/bookings/get-by-confirmation-code/CONF123456
+
+### 16. Cancel booking (USER or ADMIN)
+DELETE {{baseUrl}}/bookings/cancel/1
+Authorization: Bearer {{token}}
+
+###############################################
+### USER CONTROLLER
+###############################################
+
+### 17. Get all users (ADMIN only)
+GET {{baseUrl}}/users/all
+Authorization: Bearer {{adminToken}}
+
+### 18. Get user by ID
+GET {{baseUrl}}/users/get-by-id/1
+Authorization: Bearer {{token}}
+
+### 19. Delete user (ADMIN only)
+DELETE {{baseUrl}}/users/delete/2
+Authorization: Bearer {{adminToken}}
+
+### 20. Get logged-in user profile
+GET {{baseUrl}}/users/get-logged-in-profile-info
+Authorization: Bearer {{token}}
+
+### 21. Get user booking history
+GET {{baseUrl}}/users/get-user-bookings/1
+Authorization: Bearer {{token}}
+
+###############################################
+### CHAT CONTROLLER (OpenAI)
+###############################################
+
+### 22. Chat with AI
+GET {{baseUrl}}/chat?query=hello?
+
+### 23. Chat - Room recommendation
+GET {{baseUrl}}/chat?query=I need a room for 2 adults and 1 child for 5 nights. What do you recommend?
+
+### 24. Chat - Hotel information
+GET {{baseUrl}}/chat?query=get all rooms
+
+###############################################
+### INSTRUCTIONS D'UTILISATION
+###############################################
+
+# 1. Démarrez votre application Spring Boot
+# 2. Testez d'abord l'inscription (#1 ou #2)
+# 3. Puis connectez-vous (#3 ou #4) pour obtenir un token JWT
+# 4. Copiez le token JWT de la réponse et remplacez {{token}} ou {{adminToken}}
+# 5. Pour les endpoints protégés, utilisez: Authorization: Bearer YOUR_ACTUAL_TOKEN
+# 6. Pour les fichiers multipart (upload d'images), modifiez le chemin de l'image
+
+###############################################
+### NOTES
+###############################################
+
+# - Endpoints publics: /auth/*, /rooms/all, /rooms/types, etc.
+# - Endpoints USER: /bookings/book-room, /users/get-logged-in-profile-info
+# - Endpoints ADMIN: /rooms/add, /rooms/update, /rooms/delete, /users/all, /bookings/all
+# - Le Chat endpoint nécessite la configuration OpenAI dans application.properties
+###

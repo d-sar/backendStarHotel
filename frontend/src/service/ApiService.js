@@ -189,5 +189,16 @@ export default class ApiService {
         const role = localStorage.getItem('role')
         return role === 'USER'
     }
+
+    /**CHATBOT */
+/* This sends a chat query to the AI agent */
+static async sendChatMessage(query) {
+    const response = await fetch(`${this.BASE_URL}/chat?query=${encodeURIComponent(query)}`, {
+        headers: this.getHeader()
+    });
+    
+    // Return the response as a ReadableStream for streaming
+    return response.body;
+}
 }
 // export default new ApiService();

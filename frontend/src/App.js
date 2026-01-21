@@ -20,6 +20,7 @@ import EditBookingPage from './component/admin/EditBookingPage';
 import ProfilePage from './component/profile/ProfilePage';
 import EditProfilePage from './component/profile/EditProfilePage';
 import { ProtectedRoute, AdminRoute } from './service/guard';
+import ChatBot from './component/common/ChatBot';
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
           </Routes>
         </div>
         <FooterComponent />
+        <ChatBot/>
       </div>
     </BrowserRouter>
   );
