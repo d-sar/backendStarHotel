@@ -208,8 +208,7 @@ A comprehensive web application for hotel management and booking system named **
 ![All Rooms Page with Chatbot](screenshot-rooms-chatbot.png)
 *Browse rooms with intelligent chatbot assistance for booking inquiries*
 
-### Architecture Diagram
-![alt text](<Capture d'écran 2025-11-27 220242.png>)
+
 
 ## Credits
 
